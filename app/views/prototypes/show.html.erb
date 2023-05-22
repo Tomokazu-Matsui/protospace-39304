@@ -32,19 +32,19 @@
             <%= "コンセプト" %>
           </p>
         </div>
-                <a href="">
-          <span>投稿者</span><%= prototype.user.name %></a>
+               <a href="/users/<%= prototype.user.id %>">
+          <span>投稿者</span><%= prototype.user.user_id %></a>
           <%= render partial: 'prototype', collection: @prototypes %>
       </div>
       <div class="prototype__comments">
         <%# ログインしているユーザーには以下のコメント投稿フォームを表示する %>
-           <%= form_with model: @comment,local: true do |f|%>
+           <%= form_with model: [@prototype, @comment],local: true do |f|%>
             <div class="field">
                <%= f.label :content, "コメント" %><br />
                <%= f.text_field :content, id:"comment_content" %>
             </div>
             <div class="actions">
-              <%# <%= f.submit "送信する", class: :form__btn  %>
+               <%= f.submit "送信する", class: :form__btn  %>
             </div>
           <% end %>
         <%# // ログインしているユーザーには上記を表示する %>
@@ -52,21 +52,12 @@
           <%# 投稿に紐づくコメントを一覧する処理を記述する %>
             <li class="comments_list">
                <%= " コメントのテキスト "%>
-               <%= link_to "#{current_user.name}", user_session_path, class: :comment_user %>
+               <% @comments.each do |comment| %>          
+                   <%= link_to "/users/#{comment.user_id}",root_path, class: :comment_user %>
             </li>
+            <% end %>
           <%# // 投稿に紐づくコメントを一覧する処理を記述する %>
-          <div class="comments">
-      <h4>＜コメント一覧＞</h4>
-      <% @comments.each do |comment| %>
-        <p>
-          <strong><%= link_to comment.user.name, "/users/#{comment.user_id}" %>:</strong>
-          <%= comment.text %>
-        </p>
-      <% end %>
-
-    </div>
         </ul>
-      </div>
     </div>
   </div>
 </main>

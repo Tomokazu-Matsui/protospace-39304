@@ -7,6 +7,6 @@ class User < ApplicationRecord
          validates :profile, presence: true
          validates :occupation, presence: true
          validates :position, presence: true
-         belongs_to :user
+         has_many :prototypes
          has_many :comments
 end
