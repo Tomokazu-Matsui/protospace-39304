@@ -2,7 +2,7 @@
   <div class="inner">
     <div class="user__wrapper">
       <h2 class="page-heading">
-        <p><%= @mame %>さんの情報</p>
+        <p><%= link_to "#{current_user.name}さん" ,user_session_path %>の情報</p>
       </h2>
       <table class="table">
         <tbody>
@@ -25,15 +25,11 @@
         </tbody>
       </table>
       <h2 class="page-heading">
-        <%= @prototypes %>
-        <a href="/users/<%= @prototype.user.id %>">
-        <span>投稿者</span><%= @prototype.user.user_id %>
-      </a>
-    </span>
+       <%= "ユーザー名さんのプロトタイプ"%>
       </h2>
       <div class="user__card">
         <%# 部分テンプレートでそのユーザーが投稿したプロトタイプ投稿一覧を表示する %>
-        <%= render partial: 'prototype', collection: @prototypes %>
+          <%= render partial: 'prototypes/prototype'%>
       </div>
     </div>
   </div>

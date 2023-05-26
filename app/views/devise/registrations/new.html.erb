@@ -6,7 +6,7 @@
         <%# 「モデル名」にはUserモデルであれば@userを渡しましょう。%>
         <%# 「新規登録機能へのパス」は、devise導入後にrails routesを実行してdevise/registrations#createへのパスを確認し、記載してください。 %>
         <%#= form_with model: モデル名, url: 新規登録機能へのパス, local: true do |f| %>
-        <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+        <%= form_with model: @user, url: user_registration_path, id: 'new_user',local: true do |f| %>
 
         <div class="field">
           <%= f.label :email, "メールアドレス" %><br />
@@ -15,12 +15,12 @@
 
         <div class="field">
           <%= f.label :password, "パスワード（6文字以上）" %><br />
-          <%= f.password_field :password, id:"user_password", autocomplete: "off" %>
+          <%= f.password_field :password, id:"user_password", autocomplete: "new-password" %>
         </div>
 
         <div class="field">
           <%= f.label :password_confirmation, "パスワード再入力" %><br />
-          <%= f.password_field :password_confirmation, id:"user_password", autocomplete: "off" %>
+          <%= f.password_field :password_confirmation, id:"user_password_confirmation", autocomplete: "new-password" %>
         </div>
 
         <div class="field">
